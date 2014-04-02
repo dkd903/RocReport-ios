@@ -83,6 +83,7 @@
 		A54803A418E9440500F00B67 /* UIImage+WebP.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+WebP.m"; sourceTree = "<group>"; };
 		A54803A518E9440500F00B67 /* UIImageView+WebCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImageView+WebCache.h"; sourceTree = "<group>"; };
 		A54803A618E9440500F00B67 /* UIImageView+WebCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImageView+WebCache.m"; sourceTree = "<group>"; };
+		A567D75D18ECD4500018E6BF /* RRApiCreds.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RRApiCreds.h; sourceTree = "<group>"; };
 		A57A31FA18E7CE27000AEA13 /* RocReport.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RocReport.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A57A31FD18E7CE27000AEA13 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		A57A31FF18E7CE27000AEA13 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -218,6 +219,7 @@
 				A57A323518E7F600000AEA13 /* RRIssueDetailViewController.h */,
 				A57A323618E7F600000AEA13 /* RRIssueDetailViewController.m */,
 				A57A323218E7F5DC000AEA13 /* RRMainTableViewController.h */,
+				A567D75D18ECD4500018E6BF /* RRApiCreds.h */,
 				A57A323318E7F5DC000AEA13 /* RRMainTableViewController.m */,
 				A57A321218E7CE27000AEA13 /* RRViewController.h */,
 				A57A321318E7CE27000AEA13 /* RRViewController.m */,

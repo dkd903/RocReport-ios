@@ -7,8 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "RRApiCreds.h"
 
-#define kRRAPPAPIKEY @"Fuhjvfuys67389bjkbvHFGvcjhDSHJ6243ghsbfyu"
 #define kRRissueID @"issueID"
 #define kRRissueCat @"issueCat"
 #define kRRissueDesc @"issueDesc"
