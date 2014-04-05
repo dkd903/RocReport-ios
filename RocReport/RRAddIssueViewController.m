@@ -29,10 +29,27 @@
     // Do any additional setup after loading the view.
 }
 
--(void)viewDidAppear:(BOOL)animated {
-    if (1) {
+- (void)viewDidAppear:(BOOL)animated {
+    //if user is already logged in then skip to welcome
+    //read token from local store
+    [super viewDidAppear:TRUE];
+    
+    NSString *mntoken = @"";
+    NSString *homeDirectory = NSHomeDirectory();
+    NSString *filePath = [homeDirectory stringByAppendingString:@"/Documents/RRtoken.txt"];
+    
+    if ([[NSFileManager defaultManager] fileExistsAtPath:filePath]) {
+        mntoken = [[NSString alloc] initWithContentsOfFile:filePath encoding:NSUTF8StringEncoding error:nil];
+        //skip login screen if token exists
+        if ([mntoken length] < 8) {
+            NSLog(@"%@", mntoken);
+            [self performSegueWithIdentifier:@"SegueLoginView" sender:self];
+        }
+    } else {
+        NSLog(@"NO file");
         [self performSegueWithIdentifier:@"SegueLoginView" sender:self];
     }
+    
 }
 
 - (void)didReceiveMemoryWarning

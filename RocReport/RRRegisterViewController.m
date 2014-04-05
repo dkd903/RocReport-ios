@@ -1,20 +1,20 @@
 //
-//  RRLoginViewController.m
+//  RRRegisterViewController.m
 //  RocReport
 //
-//  Created by Debjit Saha on 3/30/14.
+//  Created by Debjit Saha on 4/5/14.
 //  Copyright (c) 2014 ___DM___. All rights reserved.
 //
 
-#import "RRLoginViewController.h"
-#import "RRApiCreds.h"
+#import "RRRegisterViewController.h"
 #import "AFNetworking.h"
+#import "RRApiCreds.h"
 
-@interface RRLoginViewController ()
+@interface RRRegisterViewController ()
 
 @end
 
-@implementation RRLoginViewController
+@implementation RRRegisterViewController
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -32,10 +32,8 @@
 }
 
 - (void)viewDidAppear:(BOOL)animated {
-    //if user is already logged in then skip to welcome
-    //read token from local store
     [super viewDidAppear:YES];
-    _userPass.secureTextEntry = YES;
+    _userPassword.secureTextEntry = YES;
 }
 
 - (void)didReceiveMemoryWarning
@@ -55,22 +53,21 @@
 }
 */
 
-- (IBAction)loginPressed:(id)sender {
-    //NSLog(@"Login Pressed: %i", [_issueList count]);
-    //[self performSegueWithIdentifier:@"SegueLoginViewBackToAdd" sender:self];
+- (IBAction)registerClicked:(id)sender {
     
-    NSString *userEmail = [_userMail text];
-    NSString *userPass = [_userPass text];
+    
+    NSString *userEmail = [_userEmail text];
+    NSString *userName = [_userName text];
+    NSString *userPass = [_userPassword text];
     
     //Trim whitespace if any
     [userEmail stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet] ];
+    [userName stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet] ];
     [userPass stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet] ];
     
-    if ([userEmail length] == 0 || [userPass length] == 0) {
-        
+    if ([userEmail length] == 0 || [userName length] == 0 || [userPass length] == 0) {
         UIAlertView *newAlert = [[UIAlertView alloc] initWithTitle:@"Login Error" message:@"Please fill in all the fields" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
         [newAlert show];
-        
     } else {
         
         //API Calls
@@ -80,28 +77,18 @@
         AFHTTPRequestOperationManager *manager = [[AFHTTPRequestOperationManager alloc] initWithBaseURL:[NSURL URLWithString:kRRAPIURL]];
         manager.responseSerializer.acceptableContentTypes = [NSSet setWithObject:@"text/html"];
         
-        NSDictionary *parameters = @{ @"email" : userEmail, @"password" : userPass, @"id" : kRRAPPAPIKEY };
+        NSDictionary *parameters = @{ @"email" : userEmail, @"password" : userPass, @"name" : userName, @"id" : kRRAPPAPIKEY };
         
-        AFHTTPRequestOperation *op = [manager POST:@"auth/login/" parameters:parameters success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        AFHTTPRequestOperation *op = [manager POST:@"auth/register/" parameters:parameters success:^(AFHTTPRequestOperation *operation, id responseObject) {
             
             NSLog(@"Success: %@ ***** %@", operation.responseString, responseObject);
-            
-            [_loginIndicator stopAnimating];
-            
-            NSLog(@"%@", responseObject[@"data"]);
+            [_registerIndicator stopAnimating];
+            //[_fieldQuestion setText:responseObject[@"data"]];
             
             if ([responseObject[@"status"] boolValue]) {
                 
-                //Save the token in a token state
-                NSError *error;
-                NSString *homeDirectory = NSHomeDirectory();
-                NSString *filePath = [homeDirectory stringByAppendingString:@"/Documents/RRtoken.txt"];
-                NSString *rrToken = responseObject[@"data"][@"token"];
-                [rrToken writeToFile:filePath atomically:YES encoding:NSUTF8StringEncoding error:&error];
-                NSLog(@"%@", rrToken);
-                
-                //move user back to add issue screen
-                [self performSegueWithIdentifier:@"SegueLoginViewBackToAdd" sender:self];
+                //move user back to login screen
+                [self performSegueWithIdentifier:@"MoveToLoginFromRegister" sender:self];
                 
             } else {
                 
@@ -110,28 +97,20 @@
                 
             }
             
-            
         } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
             
             NSLog(@"Error: %@ ***** %@", operation.responseString, error);
-            [_loginIndicator stopAnimating];
+            [_registerIndicator stopAnimating];
             UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Error" message:operation.responseString delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
             [alertView show];
             
         }];
         
-        [_loginIndicator startAnimating];
+        [_registerIndicator startAnimating];
         [op start];
         
     }
     
-}
-
-- (IBAction)clickCancelButton:(id)sender {
-    
-    //move user back to add issue screen
-    //[self performSegueWithIdentifier:@"SegueLoginViewBackToAdd" sender:self];
-    [self dismissViewControllerAnimated:YES completion:nil];
     
 }
 @end

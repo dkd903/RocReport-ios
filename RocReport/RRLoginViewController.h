@@ -10,5 +10,9 @@
 
 @interface RRLoginViewController : UIViewController
 - (IBAction)loginPressed:(id)sender;
+@property (weak, nonatomic) IBOutlet UITextField *userMail;
+@property (weak, nonatomic) IBOutlet UITextField *userPass;
+@property (weak, nonatomic) IBOutlet UIActivityIndicatorView *loginIndicator;
+- (IBAction)clickCancelButton:(id)sender;
 
 @end
