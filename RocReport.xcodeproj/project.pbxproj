@@ -169,6 +169,7 @@
 		A5BA2C2318EFB7A900C7A46F /* UIWebView+AFNetworking.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIWebView+AFNetworking.m"; sourceTree = "<group>"; };
 		A5BA2C3518EFB81B00C7A46F /* RRRegisterViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RRRegisterViewController.h; sourceTree = "<group>"; };
 		A5BA2C3618EFB81B00C7A46F /* RRRegisterViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RRRegisterViewController.m; sourceTree = "<group>"; };
+		A5BA2C3818EFCB8700C7A46F /* RRApiCreds.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RRApiCreds.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -280,6 +281,7 @@
 				A57A323618E7F600000AEA13 /* RRIssueDetailViewController.m */,
 				A57A323218E7F5DC000AEA13 /* RRMainTableViewController.h */,
 				A567D75D18ECD4500018E6BF /* RRApiCreds.h */,
+				A5BA2C3818EFCB8700C7A46F /* RRApiCreds.h */,
 				A57A323318E7F5DC000AEA13 /* RRMainTableViewController.m */,
 				A57A321218E7CE27000AEA13 /* RRViewController.h */,
 				A57A321318E7CE27000AEA13 /* RRViewController.m */,
