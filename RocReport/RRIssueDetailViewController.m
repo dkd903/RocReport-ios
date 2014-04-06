@@ -42,10 +42,18 @@
     NSNumber *latitude = [_issue objectForKey:@"issueLaitude"];
     NSNumber *longitude = [_issue objectForKey:@"issueLongitude"];
     
+    MKPointAnnotation *point = [[MKPointAnnotation alloc] init];
     MKCoordinateRegion region;
     region.span = MKCoordinateSpanMake(0.02, 0.02);
     region.center = CLLocationCoordinate2DMake([latitude floatValue], [longitude floatValue]);
+    
+    point.coordinate = region.center;
+    point.title = [_issue objectForKey:@"issueCat"];
+    point.subtitle = [_issue objectForKey:@"issueDesc"];
+    
+    
     [_issueMap setRegion:region];
+    [_issueMap addAnnotation:point];
     
     [_issueImage setImageWithURL:[NSURL URLWithString:[_issue objectForKey:@"issueImage"]]
                    placeholderImage:[UIImage imageNamed:@"cellImageLoader.gif"]];
