@@ -14,5 +14,6 @@
 @property (weak, nonatomic) IBOutlet UITextField *userPassword;
 - (IBAction)registerClicked:(id)sender;
 @property (weak, nonatomic) IBOutlet UIActivityIndicatorView *registerIndicator;
+- (IBAction)backToLoginClicked:(id)sender;
 
 @end

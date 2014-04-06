@@ -88,7 +88,8 @@
             if ([responseObject[@"status"] boolValue]) {
                 
                 //move user back to login screen
-                [self performSegueWithIdentifier:@"MoveToLoginFromRegister" sender:self];
+                //[self performSegueWithIdentifier:@"MoveToLoginFromRegister" sender:self];
+                [self dismissViewControllerAnimated:YES completion:nil];
                 
             } else {
                 
@@ -112,5 +113,8 @@
     }
     
     
+}
+- (IBAction)backToLoginClicked:(id)sender {
+    [self dismissViewControllerAnimated:YES completion:nil];
 }
 @end

@@ -101,7 +101,8 @@
                 NSLog(@"%@", rrToken);
                 
                 //move user back to add issue screen
-                [self performSegueWithIdentifier:@"SegueLoginViewBackToAdd" sender:self];
+                //[self performSegueWithIdentifier:@"SegueLoginViewBackToAdd" sender:self];
+                [self dismissViewControllerAnimated:YES completion:nil];
                 
             } else {
                 

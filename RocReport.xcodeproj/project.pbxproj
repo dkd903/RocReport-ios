@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		A53B6C3018F0037F00112713 /* take-photo.png in Resources */ = {isa = PBXBuildFile; fileRef = A53B6C2F18F0037F00112713 /* take-photo.png */; };
+		A53B6C3218F008BD00112713 /* BackGround.png in Resources */ = {isa = PBXBuildFile; fileRef = A53B6C3118F008BD00112713 /* BackGround.png */; };
 		A54803A718E9440500F00B67 /* MKAnnotationView+WebCache.m in Sources */ = {isa = PBXBuildFile; fileRef = A548038B18E9440500F00B67 /* MKAnnotationView+WebCache.m */; };
 		A54803A818E9440500F00B67 /* NSData+ImageContentType.m in Sources */ = {isa = PBXBuildFile; fileRef = A548038D18E9440500F00B67 /* NSData+ImageContentType.m */; };
 		A54803A918E9440500F00B67 /* SDImageCache.m in Sources */ = {isa = PBXBuildFile; fileRef = A548038F18E9440500F00B67 /* SDImageCache.m */; };
@@ -41,6 +43,7 @@
 		A57A323D18E7F675000AEA13 /* RRAddIssueViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A57A323C18E7F675000AEA13 /* RRAddIssueViewController.m */; };
 		A57A323F18E7F930000AEA13 /* button.png in Resources */ = {isa = PBXBuildFile; fileRef = A57A323E18E7F930000AEA13 /* button.png */; };
 		A57A324418E941AA000AEA13 /* cellImageLoader.gif in Resources */ = {isa = PBXBuildFile; fileRef = A57A324318E941AA000AEA13 /* cellImageLoader.gif */; };
+		A58FFB8818F0B343005E7F30 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A58FFB8718F0B343005E7F30 /* CoreLocation.framework */; };
 		A5BA2C2418EFB7A900C7A46F /* AFHTTPRequestOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = A5BA2C0018EFB7A900C7A46F /* AFHTTPRequestOperation.m */; };
 		A5BA2C2518EFB7A900C7A46F /* AFHTTPRequestOperationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = A5BA2C0218EFB7A900C7A46F /* AFHTTPRequestOperationManager.m */; };
 		A5BA2C2618EFB7A900C7A46F /* AFHTTPSessionManager.m in Sources */ = {isa = PBXBuildFile; fileRef = A5BA2C0418EFB7A900C7A46F /* AFHTTPSessionManager.m */; };
@@ -72,6 +75,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		A53B6C2F18F0037F00112713 /* take-photo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "take-photo.png"; sourceTree = "<group>"; };
+		A53B6C3118F008BD00112713 /* BackGround.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = BackGround.png; sourceTree = "<group>"; };
 		A548038A18E9440500F00B67 /* MKAnnotationView+WebCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "MKAnnotationView+WebCache.h"; sourceTree = "<group>"; };
 		A548038B18E9440500F00B67 /* MKAnnotationView+WebCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "MKAnnotationView+WebCache.m"; sourceTree = "<group>"; };
 		A548038C18E9440500F00B67 /* NSData+ImageContentType.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSData+ImageContentType.h"; sourceTree = "<group>"; };
@@ -130,6 +135,7 @@
 		A57A323C18E7F675000AEA13 /* RRAddIssueViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RRAddIssueViewController.m; sourceTree = "<group>"; };
 		A57A323E18E7F930000AEA13 /* button.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = button.png; sourceTree = "<group>"; };
 		A57A324318E941AA000AEA13 /* cellImageLoader.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = cellImageLoader.gif; sourceTree = "<group>"; };
+		A58FFB8718F0B343005E7F30 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		A5BA2BFF18EFB7A900C7A46F /* AFHTTPRequestOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFHTTPRequestOperation.h; sourceTree = "<group>"; };
 		A5BA2C0018EFB7A900C7A46F /* AFHTTPRequestOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFHTTPRequestOperation.m; sourceTree = "<group>"; };
 		A5BA2C0118EFB7A900C7A46F /* AFHTTPRequestOperationManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFHTTPRequestOperationManager.h; sourceTree = "<group>"; };
@@ -176,6 +182,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A58FFB8818F0B343005E7F30 /* CoreLocation.framework in Frameworks */,
 				A57A320018E7CE27000AEA13 /* CoreGraphics.framework in Frameworks */,
 				A57A320218E7CE27000AEA13 /* UIKit.framework in Frameworks */,
 				A57A31FE18E7CE27000AEA13 /* Foundation.framework in Frameworks */,
@@ -254,6 +261,7 @@
 		A57A31FC18E7CE27000AEA13 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				A58FFB8718F0B343005E7F30 /* CoreLocation.framework */,
 				A57A31FD18E7CE27000AEA13 /* Foundation.framework */,
 				A57A31FF18E7CE27000AEA13 /* CoreGraphics.framework */,
 				A57A320118E7CE27000AEA13 /* UIKit.framework */,
@@ -284,6 +292,8 @@
 				A57A321218E7CE27000AEA13 /* RRViewController.h */,
 				A57A321318E7CE27000AEA13 /* RRViewController.m */,
 				A57A324318E941AA000AEA13 /* cellImageLoader.gif */,
+				A53B6C3118F008BD00112713 /* BackGround.png */,
+				A53B6C2F18F0037F00112713 /* take-photo.png */,
 				A57A323E18E7F930000AEA13 /* button.png */,
 				A57A321518E7CE27000AEA13 /* Images.xcassets */,
 				A57A320418E7CE27000AEA13 /* Supporting Files */,
@@ -449,9 +459,11 @@
 			files = (
 				A57A324418E941AA000AEA13 /* cellImageLoader.gif in Resources */,
 				A57A321618E7CE27000AEA13 /* Images.xcassets in Resources */,
+				A53B6C3218F008BD00112713 /* BackGround.png in Resources */,
 				A57A323F18E7F930000AEA13 /* button.png in Resources */,
 				A57A320818E7CE27000AEA13 /* InfoPlist.strings in Resources */,
 				A57A321118E7CE27000AEA13 /* Main.storyboard in Resources */,
+				A53B6C3018F0037F00112713 /* take-photo.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
