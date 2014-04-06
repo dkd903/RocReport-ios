@@ -7,7 +7,10 @@
 //
 
 #import "RRMainTableViewController.h"
+#import "RRIssueDetailViewController.h"
 #import "UIImageView+WebCache.h"
+#import "AFNetworking.h"
+#import "RRApiCreds.h"
 
 @interface RRMainTableViewController ()
 
@@ -36,23 +39,73 @@
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
     
+}
 
+- (void)viewDidAppear:(BOOL)animated {
+    [super viewDidAppear:animated];
+    
     //COnnect to the API with an Async POST request
-    NSString *apiUrl = @"http://www.rocreport.org/v2/api/report/fetch/";
-    NSURL *URL = [NSURL URLWithString:apiUrl];
-    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:URL];
-    request.HTTPMethod = @"POST";
+    AFHTTPRequestOperationManager *manager = [[AFHTTPRequestOperationManager alloc] initWithBaseURL:[NSURL URLWithString:kRRAPIURL]];
+    manager.responseSerializer.acceptableContentTypes = [NSSet setWithObject:@"text/html"];
     
-    NSString *params = [@"type=locality&name=syracuse&id=" stringByAppendingString:kRRAPPAPIKEY];
+    NSDictionary *parameters = @{ @"type" : @"locality", @"name" : @"syracuse" , @"id" : kRRAPPAPIKEY };
     
-    NSData *data = [params dataUsingEncoding:NSUTF8StringEncoding];
-    [request addValue:@"8bit" forHTTPHeaderField:@"Content-Transfer-Encoding"];
-    [request addValue:@"application/x-www-form-urlencoded" forHTTPHeaderField:@"Content-Type"];
-    [request addValue:[NSString stringWithFormat:@"%i", [data length]] forHTTPHeaderField:@"Content-Length"];
-    [request setHTTPBody:data];
+    AFHTTPRequestOperation *op = [manager POST:@"report/fetch/" parameters:parameters success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        
+        NSLog(@"Success: %@ ***** %@", operation.responseString, responseObject);
+        
+        [_activityIndicatorObject stopAnimating];
+        
+        //NSLog(@"%@", responseObject[@"data"]);
+        
+        if ([responseObject[@"status"] boolValue]) {
+            
+            //get the data part of the response
+            NSArray *apiResponseData = responseObject[@"data"];
+            
+            //iterate through the results
+            for (id object in apiResponseData) {
+                //object has all the details about the Issue
+                NSString *issueID = [object objectForKey:@"report_id"];
+                NSString *issueCat = [object objectForKey:@"category"];
+                NSString *issueDesc = [object objectForKey:@"description"];
+                NSString *issueLocality = [object objectForKey:@"locality"];
+                NSString *issueAddress = [object objectForKey:@"formatted_address"];
+                NSString *issueLatitude = [object objectForKey:@"latitude"];
+                NSString *issueLongitude = [object objectForKey:@"longitude"];
+                NSString *issueVotes = [object objectForKey:@"vote_count"];
+                NSString *issueImage = [object objectForKey:@"picture"];
+                NSDictionary *issueDetails = [[NSDictionary alloc] initWithObjectsAndKeys:issueID, kRRissueID, issueCat, kRRissueCat, issueDesc, kRRissueDesc,
+                                              issueLocality, kRRissueLocality, issueAddress, kRRissueAddress, issueLatitude, kRRissueLatitude,
+                                              issueLongitude, kRRissueLongitude, issueVotes, kRRissueVotes, issueImage, kRRissueImage,
+                                              nil];
+                
+                //add it to the issue list array
+                [_issueList addObject:issueDetails];
+            }
+            
+            //Reload the tableview
+            [[self tableView] reloadData];
+            
+        } else {
+            
+            UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Error" message:responseObject[@"data"][@"reason"] delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
+            [alertView show];
+            
+        }
+        
+        
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        
+        NSLog(@"Error: %@ ***** %@", operation.responseString, error);
+        [_activityIndicatorObject stopAnimating];
+        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Error" message:operation.responseString delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
+        [alertView show];
+        
+    }];
     
-    // Create url connection and fire request
-    NSURLConnection *conn = [[NSURLConnection alloc] initWithRequest:request delegate:self];
+    [_activityIndicatorObject startAnimating];
+    [op start];
     
 }
 
@@ -143,7 +196,7 @@
 }
 */
 
-/*
+
 #pragma mark - Navigation
 
 // In a storyboard-based application, you will often want to do a little preparation before navigation
@@ -151,85 +204,13 @@
 {
     // Get the new view controller using [segue destinationViewController].
     // Pass the selected object to the new view controller.
-}
-*/
-
-#pragma mark NSURLConnection Delegate Methods
-
-- (void)connection:(NSURLConnection *)connection didReceiveResponse:(NSURLResponse *)response {
-    // A response has been received, this is where we initialize the instance var you created
-    // so that we can append data to it in the didReceiveData method
-    // Furthermore, this method is called each time there is a redirect so reinitializing it
-    // also serves to clear it
-    //_responseData = [[NSMutableData alloc] init];
-}
-
-- (void)connection:(NSURLConnection *)connection didReceiveData:(NSData *)data {
-    
-    //Parse the JSON response
-    NSError *error;
-    NSDictionary *apiResponse = [NSJSONSerialization
-                                JSONObjectWithData:data
-                                options:kNilOptions
-                                error:&error];
-    
-    //check if the response is good to go
-    NSString *apiResponseStatus = [apiResponse objectForKey:@"status"];
-    if ([apiResponseStatus boolValue] == 1) {
-        
-        //get the data part of the response
-        NSArray *apiResponseData = [apiResponse objectForKey:@"data"];
-        
-        //iterate through the results
-        for (id object in apiResponseData) {
-            //object has all the details about the Issue
-            NSString *issueID = [object objectForKey:@"report_id"];
-            NSString *issueCat = [object objectForKey:@"category"];
-            NSString *issueDesc = [object objectForKey:@"description"];
-            NSString *issueLocality = [object objectForKey:@"locality"];
-            NSString *issueAddress = [object objectForKey:@"formatted_address"];
-            NSString *issueLatitude = [object objectForKey:@"latitude"];
-            NSString *issueLongitude = [object objectForKey:@"longitude"];
-            NSString *issueVotes = [object objectForKey:@"vote_count"];
-            NSString *issueImage = [object objectForKey:@"picture"];
-            NSDictionary *issueDetails = [[NSDictionary alloc] initWithObjectsAndKeys:issueID, kRRissueID, issueCat, kRRissueCat, issueDesc, kRRissueDesc,
-                                          issueLocality, kRRissueLocality, issueAddress, kRRissueAddress, issueLatitude, kRRissueLatitude,
-                                          issueLongitude, kRRissueLongitude, issueVotes, kRRissueVotes, issueImage, kRRissueImage,
-                                          nil];
-            
-            //add it to the issue list array
-            [_issueList addObject:issueDetails];
-        }
-        
-        //Reload the tableview
-        [[self tableView] reloadData];
-        //NSLog(@"%d", [_issueList count]);
-        
-    } else {
-        
-        //Show alert that request was not fine
-        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Error" message:@"Something Went Wrong" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
-        [alertView show];
-        
+    if ([[segue identifier] isEqualToString:@"SegueIssueDetailView"]) {
+        NSIndexPath *selectedRow = [[self tableView] indexPathForSelectedRow];
+        NSDictionary *selectedIssue = [_issueList objectAtIndex:[selectedRow row]];
+        RRIssueDetailViewController *rrViewController = [segue destinationViewController];
+        [rrViewController setIssue: selectedIssue];
     }
-
 }
 
-- (NSCachedURLResponse *)connection:(NSURLConnection *)connection
-                  willCacheResponse:(NSCachedURLResponse*)cachedResponse {
-    // Return nil to indicate not necessary to store a cached response for this connection
-    return nil;
-}
-
-- (void)connectionDidFinishLoading:(NSURLConnection *)connection {
-    // The request is complete and data has been received
-    // You can parse the stuff in your instance variable now
-    
-}
-
-- (void)connection:(NSURLConnection *)connection didFailWithError:(NSError *)error {
-    // The request has failed for some reason!
-    // Check the error var
-}
 
 @end

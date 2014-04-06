@@ -9,5 +9,5 @@
 #import <UIKit/UIKit.h>
 
 @interface RRViewController : UIViewController
-
+@property (weak, nonatomic) NSDictionary *issue;
 @end

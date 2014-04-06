@@ -7,6 +7,7 @@
 //
 
 #import "RRIssueDetailViewController.h"
+#import "UIImageView+WebCache.h"
 
 @interface RRIssueDetailViewController ()
 
@@ -27,6 +28,43 @@
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+}
+
+- (void)viewWillAppear:(BOOL)animated {
+    
+    [super viewWillAppear:animated];
+    NSLog(@"%@", _issue);
+    [_issueCat setText:[_issue objectForKey:@"issueCat"]];
+    [_issueAddress setText:[_issue objectForKey:@"issueAddress"]];
+    [_issueTitle setText:[_issue objectForKey:@"issueDesc"]];
+    
+    
+    NSNumber *latitude = [_issue objectForKey:@"issueLaitude"];
+    NSNumber *longitude = [_issue objectForKey:@"issueLongitude"];
+    
+    MKCoordinateRegion region;
+    region.span = MKCoordinateSpanMake(0.02, 0.02);
+    region.center = CLLocationCoordinate2DMake([latitude floatValue], [longitude floatValue]);
+    [_issueMap setRegion:region];
+    
+    [_issueImage setImageWithURL:[NSURL URLWithString:[_issue objectForKey:@"issueImage"]]
+                   placeholderImage:[UIImage imageNamed:@"cellImageLoader.gif"]];
+    
+    // Send a synchronous request
+    /*NSURLRequest * urlRequest = [NSURLRequest requestWithURL:[NSURL URLWithString:@"http://rocreport.org/v2/api/auth/register/"]];
+     NSURLResponse * response = nil;
+     NSError * error = nil;
+     NSData * data = [NSURLConnection sendSynchronousRequest:urlRequest
+     returningResponse:&response
+     error:&error];
+     
+     if (error == nil)
+     {
+     // Parse data here
+     NSString* newStr = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
+     NSLog(newStr);
+     }*/
+    
 }
 
 - (void)didReceiveMemoryWarning

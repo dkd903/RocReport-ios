@@ -23,6 +23,10 @@
 		A54803B218E9440500F00B67 /* UIImage+MultiFormat.m in Sources */ = {isa = PBXBuildFile; fileRef = A54803A218E9440500F00B67 /* UIImage+MultiFormat.m */; };
 		A54803B318E9440500F00B67 /* UIImage+WebP.m in Sources */ = {isa = PBXBuildFile; fileRef = A54803A418E9440500F00B67 /* UIImage+WebP.m */; };
 		A54803B418E9440500F00B67 /* UIImageView+WebCache.m in Sources */ = {isa = PBXBuildFile; fileRef = A54803A618E9440500F00B67 /* UIImageView+WebCache.m */; };
+		A55F484F18F0F3E3004C239B /* icon.png in Resources */ = {isa = PBXBuildFile; fileRef = A55F484B18F0F3E3004C239B /* icon.png */; };
+		A55F485018F0F3E3004C239B /* icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A55F484C18F0F3E3004C239B /* icon@2x.png */; };
+		A55F485318F0F446004C239B /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = A55F485118F0F446004C239B /* Default.png */; };
+		A55F485418F0F446004C239B /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A55F485218F0F446004C239B /* Default@2x.png */; };
 		A57A31FE18E7CE27000AEA13 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A57A31FD18E7CE27000AEA13 /* Foundation.framework */; };
 		A57A320018E7CE27000AEA13 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A57A31FF18E7CE27000AEA13 /* CoreGraphics.framework */; };
 		A57A320218E7CE27000AEA13 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A57A320118E7CE27000AEA13 /* UIKit.framework */; };
@@ -106,6 +110,10 @@
 		A54803A418E9440500F00B67 /* UIImage+WebP.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+WebP.m"; sourceTree = "<group>"; };
 		A54803A518E9440500F00B67 /* UIImageView+WebCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImageView+WebCache.h"; sourceTree = "<group>"; };
 		A54803A618E9440500F00B67 /* UIImageView+WebCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImageView+WebCache.m"; sourceTree = "<group>"; };
+		A55F484B18F0F3E3004C239B /* icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon.png; sourceTree = "<group>"; };
+		A55F484C18F0F3E3004C239B /* icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon@2x.png"; sourceTree = "<group>"; };
+		A55F485118F0F446004C239B /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
+		A55F485218F0F446004C239B /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
 		A57A31FA18E7CE27000AEA13 /* RocReport.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RocReport.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A57A31FD18E7CE27000AEA13 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		A57A31FF18E7CE27000AEA13 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -292,6 +300,10 @@
 				A57A321218E7CE27000AEA13 /* RRViewController.h */,
 				A57A321318E7CE27000AEA13 /* RRViewController.m */,
 				A57A324318E941AA000AEA13 /* cellImageLoader.gif */,
+				A55F484B18F0F3E3004C239B /* icon.png */,
+				A55F484C18F0F3E3004C239B /* icon@2x.png */,
+				A55F485118F0F446004C239B /* Default.png */,
+				A55F485218F0F446004C239B /* Default@2x.png */,
 				A53B6C3118F008BD00112713 /* BackGround.png */,
 				A53B6C2F18F0037F00112713 /* take-photo.png */,
 				A57A323E18E7F930000AEA13 /* button.png */,
@@ -462,8 +474,12 @@
 				A53B6C3218F008BD00112713 /* BackGround.png in Resources */,
 				A57A323F18E7F930000AEA13 /* button.png in Resources */,
 				A57A320818E7CE27000AEA13 /* InfoPlist.strings in Resources */,
+				A55F485418F0F446004C239B /* Default@2x.png in Resources */,
+				A55F484F18F0F3E3004C239B /* icon.png in Resources */,
 				A57A321118E7CE27000AEA13 /* Main.storyboard in Resources */,
 				A53B6C3018F0037F00112713 /* take-photo.png in Resources */,
+				A55F485018F0F3E3004C239B /* icon@2x.png in Resources */,
+				A55F485318F0F446004C239B /* Default.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
