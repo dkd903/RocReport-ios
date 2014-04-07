@@ -8,6 +8,7 @@
 
 #import "RRIssueDetailViewController.h"
 #import "UIImageView+WebCache.h"
+#import <GoogleMaps/GoogleMaps.h>
 
 @interface RRIssueDetailViewController ()
 
@@ -24,10 +25,31 @@
     return self;
 }
 
-- (void)viewDidLoad
+/*- (void)viewDidLoad
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+}*/
+
+- (void)viewDidLoad {
+    // Create a GMSCameraPosition that tells the map to display the
+    // coordinate -33.86,151.20 at zoom level 6.
+    GMSMapView *mapView_;
+    GMSCameraPosition *camera = [GMSCameraPosition cameraWithLatitude:-33.86
+                                                            longitude:151.20
+                                                                 zoom:6];
+    mapView_ = [GMSMapView mapWithFrame:CGRectZero camera:camera];
+    mapView_.myLocationEnabled = YES;
+    //self.view = mapView_;
+    //[_issueGmaps addSubview:mapView_];
+    [self.view addSubview:mapView_];
+    
+    // Creates a marker in the center of the map.
+    GMSMarker *marker = [[GMSMarker alloc] init];
+    marker.position = CLLocationCoordinate2DMake(-33.86, 151.20);
+    marker.title = @"Sydney";
+    marker.snippet = @"Australia";
+    marker.map = mapView_;
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -58,20 +80,19 @@
     [_issueImage setImageWithURL:[NSURL URLWithString:[_issue objectForKey:@"issueImage"]]
                    placeholderImage:[UIImage imageNamed:@"cellImageLoader.gif"]];
     
-    // Send a synchronous request
-    /*NSURLRequest * urlRequest = [NSURLRequest requestWithURL:[NSURL URLWithString:@"http://rocreport.org/v2/api/auth/register/"]];
-     NSURLResponse * response = nil;
-     NSError * error = nil;
-     NSData * data = [NSURLConnection sendSynchronousRequest:urlRequest
-     returningResponse:&response
-     error:&error];
-     
-     if (error == nil)
-     {
-     // Parse data here
-     NSString* newStr = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
-     NSLog(newStr);
-     }*/
+    /*GMSCameraPosition *camera = [GMSCameraPosition cameraWithLatitude:-33.86
+                                                            longitude:151.20
+                                                                 zoom:6];
+    _mapView_ = [GMSMapView mapWithFrame:CGRectZero camera:camera];
+    _mapView_.myLocationEnabled = YES;
+    _issueGmaps = _mapView_;
+    
+    // Creates a marker in the center of the map.
+    GMSMarker *marker = [[GMSMarker alloc] init];
+    marker.position = CLLocationCoordinate2DMake(-33.86, 151.20);
+    marker.title = @"Sydney";
+    marker.snippet = @"Australia";
+    marker.map = _mapView_;*/
     
 }
 

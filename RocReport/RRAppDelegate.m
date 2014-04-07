@@ -7,12 +7,16 @@
 //
 
 #import "RRAppDelegate.h"
+#import "RRApiCreds.h"
+#import <GoogleMaps/GoogleMaps.h>
 
 @implementation RRAppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     // Override point for customization after application launch.
+    [GMSServices provideAPIKey:kRRGMAPSAPIKEY];
+    NSLog(@"my bundle id is: %@ %@", [[NSBundle mainBundle] bundleIdentifier], kRRGMAPSAPIKEY);
     return YES;
 }
 							

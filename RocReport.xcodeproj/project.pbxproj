@@ -27,6 +27,20 @@
 		A55F485018F0F3E3004C239B /* icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A55F484C18F0F3E3004C239B /* icon@2x.png */; };
 		A55F485318F0F446004C239B /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = A55F485118F0F446004C239B /* Default.png */; };
 		A55F485418F0F446004C239B /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A55F485218F0F446004C239B /* Default@2x.png */; };
+		A55F485A18F115A4004C239B /* GoogleMaps.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A55F485918F115A4004C239B /* GoogleMaps.framework */; };
+		A55F485C18F115C8004C239B /* GoogleMaps.bundle in Resources */ = {isa = PBXBuildFile; fileRef = A55F485B18F115C8004C239B /* GoogleMaps.bundle */; };
+		A55F485E18F115FB004C239B /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A55F485D18F115FB004C239B /* AVFoundation.framework */; };
+		A55F486018F11604004C239B /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A55F485F18F11604004C239B /* CoreData.framework */; };
+		A55F486218F11610004C239B /* GLKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A55F486118F11610004C239B /* GLKit.framework */; };
+		A55F486418F1161B004C239B /* ImageIO.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A55F486318F1161B004C239B /* ImageIO.framework */; };
+		A55F486618F11629004C239B /* libc++.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = A55F486518F11629004C239B /* libc++.dylib */; };
+		A55F486818F11635004C239B /* libicucore.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = A55F486718F11635004C239B /* libicucore.dylib */; };
+		A55F486A18F1163C004C239B /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = A55F486918F1163C004C239B /* libz.dylib */; };
+		A55F486C18F11647004C239B /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A55F486B18F11647004C239B /* OpenGLES.framework */; };
+		A55F486E18F1164E004C239B /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A55F486D18F1164E004C239B /* QuartzCore.framework */; };
+		A55F487018F1165A004C239B /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A55F486F18F1165A004C239B /* SystemConfiguration.framework */; };
+		A55F487D18F173A5004C239B /* MyCustomCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A55F487C18F173A5004C239B /* MyCustomCell.xib */; };
+		A55F488018F17421004C239B /* MyCustomCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A55F487F18F17421004C239B /* MyCustomCell.m */; };
 		A57A31FE18E7CE27000AEA13 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A57A31FD18E7CE27000AEA13 /* Foundation.framework */; };
 		A57A320018E7CE27000AEA13 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A57A31FF18E7CE27000AEA13 /* CoreGraphics.framework */; };
 		A57A320218E7CE27000AEA13 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A57A320118E7CE27000AEA13 /* UIKit.framework */; };
@@ -114,6 +128,21 @@
 		A55F484C18F0F3E3004C239B /* icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon@2x.png"; sourceTree = "<group>"; };
 		A55F485118F0F446004C239B /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
 		A55F485218F0F446004C239B /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
+		A55F485918F115A4004C239B /* GoogleMaps.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = GoogleMaps.framework; sourceTree = "<group>"; };
+		A55F485B18F115C8004C239B /* GoogleMaps.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = GoogleMaps.bundle; path = GoogleMaps.framework/Versions/A/Resources/GoogleMaps.bundle; sourceTree = "<group>"; };
+		A55F485D18F115FB004C239B /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
+		A55F485F18F11604004C239B /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
+		A55F486118F11610004C239B /* GLKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GLKit.framework; path = System/Library/Frameworks/GLKit.framework; sourceTree = SDKROOT; };
+		A55F486318F1161B004C239B /* ImageIO.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ImageIO.framework; path = System/Library/Frameworks/ImageIO.framework; sourceTree = SDKROOT; };
+		A55F486518F11629004C239B /* libc++.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libc++.dylib"; path = "usr/lib/libc++.dylib"; sourceTree = SDKROOT; };
+		A55F486718F11635004C239B /* libicucore.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libicucore.dylib; path = usr/lib/libicucore.dylib; sourceTree = SDKROOT; };
+		A55F486918F1163C004C239B /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
+		A55F486B18F11647004C239B /* OpenGLES.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGLES.framework; path = System/Library/Frameworks/OpenGLES.framework; sourceTree = SDKROOT; };
+		A55F486D18F1164E004C239B /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		A55F486F18F1165A004C239B /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
+		A55F487C18F173A5004C239B /* MyCustomCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MyCustomCell.xib; sourceTree = "<group>"; };
+		A55F487E18F17421004C239B /* MyCustomCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyCustomCell.h; sourceTree = "<group>"; };
+		A55F487F18F17421004C239B /* MyCustomCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyCustomCell.m; sourceTree = "<group>"; };
 		A57A31FA18E7CE27000AEA13 /* RocReport.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RocReport.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A57A31FD18E7CE27000AEA13 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		A57A31FF18E7CE27000AEA13 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -190,9 +219,20 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A55F487018F1165A004C239B /* SystemConfiguration.framework in Frameworks */,
+				A55F486E18F1164E004C239B /* QuartzCore.framework in Frameworks */,
+				A55F486C18F11647004C239B /* OpenGLES.framework in Frameworks */,
+				A55F486A18F1163C004C239B /* libz.dylib in Frameworks */,
+				A55F486818F11635004C239B /* libicucore.dylib in Frameworks */,
+				A55F486618F11629004C239B /* libc++.dylib in Frameworks */,
+				A55F486418F1161B004C239B /* ImageIO.framework in Frameworks */,
+				A55F486218F11610004C239B /* GLKit.framework in Frameworks */,
+				A55F486018F11604004C239B /* CoreData.framework in Frameworks */,
+				A55F485E18F115FB004C239B /* AVFoundation.framework in Frameworks */,
 				A58FFB8818F0B343005E7F30 /* CoreLocation.framework in Frameworks */,
 				A57A320018E7CE27000AEA13 /* CoreGraphics.framework in Frameworks */,
 				A57A320218E7CE27000AEA13 /* UIKit.framework in Frameworks */,
+				A55F485A18F115A4004C239B /* GoogleMaps.framework in Frameworks */,
 				A57A31FE18E7CE27000AEA13 /* Foundation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -249,6 +289,9 @@
 		A57A31F118E7CE27000AEA13 = {
 			isa = PBXGroup;
 			children = (
+				A55F487E18F17421004C239B /* MyCustomCell.h */,
+				A55F487F18F17421004C239B /* MyCustomCell.m */,
+				A55F487C18F173A5004C239B /* MyCustomCell.xib */,
 				A5BA2C3918EFCC4000C7A46F /* RRApiCreds.h */,
 				A57A320318E7CE27000AEA13 /* RocReport */,
 				A57A322218E7CE28000AEA13 /* RocReportTests */,
@@ -269,6 +312,18 @@
 		A57A31FC18E7CE27000AEA13 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				A55F486F18F1165A004C239B /* SystemConfiguration.framework */,
+				A55F486D18F1164E004C239B /* QuartzCore.framework */,
+				A55F486B18F11647004C239B /* OpenGLES.framework */,
+				A55F486918F1163C004C239B /* libz.dylib */,
+				A55F486718F11635004C239B /* libicucore.dylib */,
+				A55F486518F11629004C239B /* libc++.dylib */,
+				A55F486318F1161B004C239B /* ImageIO.framework */,
+				A55F486118F11610004C239B /* GLKit.framework */,
+				A55F485F18F11604004C239B /* CoreData.framework */,
+				A55F485D18F115FB004C239B /* AVFoundation.framework */,
+				A55F485B18F115C8004C239B /* GoogleMaps.bundle */,
+				A55F485918F115A4004C239B /* GoogleMaps.framework */,
 				A58FFB8718F0B343005E7F30 /* CoreLocation.framework */,
 				A57A31FD18E7CE27000AEA13 /* Foundation.framework */,
 				A57A31FF18E7CE27000AEA13 /* CoreGraphics.framework */,
@@ -472,6 +527,7 @@
 				A57A324418E941AA000AEA13 /* cellImageLoader.gif in Resources */,
 				A57A321618E7CE27000AEA13 /* Images.xcassets in Resources */,
 				A53B6C3218F008BD00112713 /* BackGround.png in Resources */,
+				A55F485C18F115C8004C239B /* GoogleMaps.bundle in Resources */,
 				A57A323F18E7F930000AEA13 /* button.png in Resources */,
 				A57A320818E7CE27000AEA13 /* InfoPlist.strings in Resources */,
 				A55F485418F0F446004C239B /* Default@2x.png in Resources */,
@@ -479,6 +535,7 @@
 				A57A321118E7CE27000AEA13 /* Main.storyboard in Resources */,
 				A53B6C3018F0037F00112713 /* take-photo.png in Resources */,
 				A55F485018F0F3E3004C239B /* icon@2x.png in Resources */,
+				A55F487D18F173A5004C239B /* MyCustomCell.xib in Resources */,
 				A55F485318F0F446004C239B /* Default.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -516,6 +573,7 @@
 				A5BA2C2418EFB7A900C7A46F /* AFHTTPRequestOperation.m in Sources */,
 				A5BA2C3718EFB81B00C7A46F /* RRRegisterViewController.m in Sources */,
 				A54803AB18E9440500F00B67 /* SDWebImageDecoder.m in Sources */,
+				A55F488018F17421004C239B /* MyCustomCell.m in Sources */,
 				A5BA2C2718EFB7A900C7A46F /* AFNetworkReachabilityManager.m in Sources */,
 				A5BA2C2F18EFB7A900C7A46F /* UIAlertView+AFNetworking.m in Sources */,
 				A54803B418E9440500F00B67 /* UIImageView+WebCache.m in Sources */,
@@ -661,10 +719,15 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "RocReport/RocReport-Prefix.pch";
 				INFOPLIST_FILE = "RocReport/RocReport-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};
@@ -675,10 +738,15 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "RocReport/RocReport-Prefix.pch";
 				INFOPLIST_FILE = "RocReport/RocReport-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};

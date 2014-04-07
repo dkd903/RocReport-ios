@@ -11,6 +11,7 @@
 #import "UIImageView+WebCache.h"
 #import "AFNetworking.h"
 #import "RRApiCreds.h"
+#import "MyCustomCell.h"
 
 @interface RRMainTableViewController ()
 
@@ -136,6 +137,12 @@
 {
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"BasicCell" forIndexPath:indexPath];
     
+    /*MyCustomCell *cell = [tableView dequeueReusableCellWithIdentifier:@"myCell"];
+    if (!cell) {
+        [tableView registerNib:[UINib nibWithNibName:@"MyCustomCell" bundle:nil] forCellReuseIdentifier:@"myCell"];
+        cell = [tableView dequeueReusableCellWithIdentifier:@"myCell" forIndexPath:indexPath];
+    }*/
+    
     // Configure the cell...
     
     int rowNumber = [indexPath row];
@@ -150,13 +157,25 @@
     //set the text label and the description label
     [[cell textLabel] setText:issueDesc];
     [[cell detailTextLabel] setText:[[issueCat stringByAppendingString:@" in "] stringByAppendingString:issueLocality]];
-    //[[cell imageView] setImage:[UIImage imageNamed:@"button.png"]];
+    [[cell imageView] setImage:[UIImage imageNamed:@"button.png"]];
     [cell.imageView setImageWithURL:[NSURL URLWithString:issueImage]
                    placeholderImage:[UIImage imageNamed:@"cellImageLoader.gif"]];
+    cell.imageView.transform = CGAffineTransformMakeScale(0.65, 0.65);
+    
+    /*cell.issueDsc.text = issueDesc;
+    cell.issueCt.text = [[issueCat stringByAppendingString:@" in "] stringByAppendingString:issueLocality];
+    [cell.issueImg setImageWithURL:[NSURL URLWithString:issueImage]
+                   placeholderImage:[UIImage imageNamed:@"cellImageLoader.gif"]];*/
+    
     
     return cell;
+    
 }
 
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    return 90;
+}
 
 /*
 // Override to support conditional editing of the table view.
