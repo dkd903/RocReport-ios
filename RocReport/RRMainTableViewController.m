@@ -162,11 +162,11 @@
                    placeholderImage:[UIImage imageNamed:@"cellImageLoader.gif"]];
     cell.imageView.transform = CGAffineTransformMakeScale(0.65, 0.65);
     
-    /*cell.issueDsc.text = issueDesc;
-    cell.issueCt.text = [[issueCat stringByAppendingString:@" in "] stringByAppendingString:issueLocality];
-    [cell.issueImg setImageWithURL:[NSURL URLWithString:issueImage]
-                   placeholderImage:[UIImage imageNamed:@"cellImageLoader.gif"]];*/
-    
+    //cell.issueDsc.text = issueDesc;
+    //cell.issueCt.text = [[issueCat stringByAppendingString:@" in "] stringByAppendingString:issueLocality];
+    //[cell.issueImg setImageWithURL:[NSURL URLWithString:issueImage]
+      //             placeholderImage:[UIImage imageNamed:@"cellImageLoader.gif"]];
+    //cell.accessoryType = UITableViewCellAccessoryDetailDisclosureButton;
     
     return cell;
     
@@ -228,8 +228,18 @@
         NSDictionary *selectedIssue = [_issueList objectAtIndex:[selectedRow row]];
         RRIssueDetailViewController *rrViewController = [segue destinationViewController];
         [rrViewController setIssue: selectedIssue];
+        NSLog(@"%@",@"fff");
     }
 }
 
+/*- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    UIAlertView *messageAlert = [[UIAlertView alloc]
+                                 initWithTitle:@"Row Selected" message:@"You've selected a row" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
+    
+    // Display Alert Message
+    //[messageAlert show];
+
+}*/
 
 @end

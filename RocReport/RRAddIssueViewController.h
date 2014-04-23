@@ -32,4 +32,6 @@
 - (IBAction)issueTakeImage:(id)sender;
 - (IBAction)issueTakeImageText:(id)sender;
 - (IBAction)textFieldReturn:(id)sender;
+- (IBAction)submitTopClick:(id)sender;
+
 @end
