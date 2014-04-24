@@ -60,6 +60,28 @@
         [self performSegueWithIdentifier:@"SegueLoginView" sender:self];
     }
     
+    //Init the picker for category
+    // Init the data array.
+    _dataArray = [[NSMutableArray alloc] init];
+    
+    // Add some data for demo purposes.
+    [_dataArray addObject:@"vehicle issue"];
+    [_dataArray addObject:@"street, road, sidewalk"];
+    [_dataArray addObject:@"animal issues"];
+    [_dataArray addObject:@"trash, waste"];
+    [_dataArray addObject:@"street light"];
+    [_dataArray addObject:@"road sign"];
+    [_dataArray addObject:@"traffic light"];
+    [_dataArray addObject:@"plant, tree"];
+    
+    // Init the picker view.
+    _pickerView = [[UIPickerView alloc] init];
+    [_pickerView setDataSource: self];
+    [_pickerView setDelegate: self];
+    _pickerView.showsSelectionIndicator = YES;
+    [_pickerView selectRow:2 inComponent:0 animated:YES];
+    [_issueCat setInputView:_pickerView];
+    
 }
 
 -(void)viewWillAppear:(BOOL)animated {
@@ -93,123 +115,12 @@
 }
 */
 
+- (IBAction)issueCatHit:(id)sender {
+    NSLog(@"%@", @"hit");
+}
+
 - (IBAction)issueAddButton:(id)sender {
-    
-    NSString *issueDesc = [_issueText text];
-    NSString *issueLoc = [_issueLocation text];
-    NSData *issueImage = UIImageJPEGRepresentation(_issueImageToUpload, 50);
-    __block NSString *imageUrl = @"";
-    
-    //Trim whitespace if any
-    [issueDesc stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet] ];
-    [issueLoc stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet] ];
-    
-    NSLog(@"%@",_issueImageToUpload);
-    
-    if ([issueDesc length] == 0 || _issueImageToUpload == nil) {
-        
-        UIAlertView *newAlert = [[UIAlertView alloc] initWithTitle:@"Error" message:@"Please fill in all the fields" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
-        [newAlert show];
-        
-    } else if ( _locationManager.location == nil ) {
-    
-        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Error" message:@"Turn On Location services to Allow \"RocReport\" to Determine Your Location" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
-        [alertView show];
-        _issueLocation.text = @"Unable to get Location, Please Enable Location Services";
-        
-    }else {
-        
-        [_issueIndicator startAnimating];
-        
-        //API Calls
-        //First upload the image & then after a succesful upload,
-        //add the issue using the image url response
-        
-        AFHTTPRequestOperationManager *manager = [[AFHTTPRequestOperationManager alloc] initWithBaseURL:[NSURL URLWithString:kRRAPIURL]];
-        manager.responseSerializer.acceptableContentTypes = [NSSet setWithObject:@"text/html"];
-        
-        //get Image url
-        NSDictionary *parameters = @{ @"token": _rrtoken, @"id": kRRAPPAPIKEY};
-        
-        AFHTTPRequestOperation *op = [manager POST:@"image/add/" parameters:parameters constructingBodyWithBlock:^(id<AFMultipartFormData> formData) {
-            
-            //do not put image inside parameters dictionary as I did, but append it!
-            [formData appendPartWithFileData:issueImage name:@"image" fileName:@"image.jpg" mimeType:@"image/jpeg"];
-            
-        } success:^(AFHTTPRequestOperation *operation, id responseObject) {
-            
-            NSLog(@"Success: %@ ***** %@", operation.responseString, responseObject);
-            [_issueIndicator stopAnimating];
-            
-            if ([responseObject[@"status"] boolValue]) {
-                
-                imageUrl = responseObject[@"data"][@"image_url"];
-
-                //Post the Isuue if the response in above step has the URL of image
-                if ([imageUrl isEqualToString:@""]) {
-                    
-                } else {
-                    
-                    NSDictionary *parametersa = @{ @"location" : issueLoc, @"category" : @"test", @"description" : issueDesc, @"picture" : imageUrl, @"novote" : @"true", @"id" : kRRAPPAPIKEY, @"token" : _rrtoken, @"latitude" : _lati, @"longitude" : _longi, @"locality" : _addrLocality, @"formatted_address" : _addrFull, @"country" : _addrCountry,  };
-                    
-                    AFHTTPRequestOperation *opa = [manager POST:@"report/add/" parameters:parametersa success:^(AFHTTPRequestOperation *operationa, id responseObjecta) {
-                        
-                        NSLog(@"Success: %@ ***** %@", operationa.responseString, responseObjecta);
-                        
-                        [_issueIndicator stopAnimating];
-                        
-                        //NSLog(@"%@", responseObjecta[@"data"]);
-                        //NSLog(@"%@", responseObjecta[@"status"]);
-                        
-                        if ([responseObjecta[@"status"] boolValue]) {
-                            
-                            //[self dismissViewControllerAnimated:YES completion:nil];
-                            [self.navigationController popViewControllerAnimated:YES];
-                            //NSLog(@"I ma her");
-                            
-                        } else {
-                            
-                            UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Error" message:responseObjecta[@"data"][@"reason"] delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
-                            [alertView show];
-                            
-                        }
-                        
-                        
-                    } failure:^(AFHTTPRequestOperation *operationa, NSError *error) {
-                        
-                        NSLog(@"Error: %@ ***** %@", operationa.responseString, error);
-                        [_issueIndicator stopAnimating];
-                        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Error" message:operationa.responseString delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
-                        [alertView show];
-                        
-                    }];
-                    
-                    [_issueIndicator startAnimating];
-                    [opa start];
-                    
-                }
-                
-            } else {
-                
-                UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Error" message:responseObject[@"data"][@"reason"] delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
-                [alertView show];
-                
-            }
-            
-        } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-            
-            //NSLog(@"Error: %@ ***** %@", operation.responseString, error);
-            [_issueIndicator stopAnimating];
-
-            UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Error" message:operation.responseString delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
-            [alertView show];
-            
-        }];
-
-        [op start];
-        
-    }
-    
+    [self addIssueFunc];
 }
 
 /**
@@ -353,6 +264,9 @@
     if ([_issueLocation isFirstResponder] && [touch view] != _issueLocation) {
         [_issueLocation resignFirstResponder];
     }
+    if ([_issueCat isFirstResponder] && [touch view] != _issueCat) {
+        [_issueCat resignFirstResponder];
+    }
     [super touchesBegan:touches withEvent:event];
 }
 
@@ -364,5 +278,146 @@
 }
 
 - (IBAction)submitTopClick:(id)sender {
+    [self addIssueFunc];
+}
+
+- (void)addIssueFunc {
+    NSString *issueDesc = [_issueText text];
+    NSString *issueLoc = [_issueLocation text];
+    NSData *issueImage = UIImageJPEGRepresentation(_issueImageToUpload, 50);
+    __block NSString *imageUrl = @"";
+    
+    //Trim whitespace if any
+    [issueDesc stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet] ];
+    [issueLoc stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet] ];
+    
+    NSLog(@"%@",_issueImageToUpload);
+    
+    if ([issueDesc length] == 0 || _issueImageToUpload == nil) {
+        
+        UIAlertView *newAlert = [[UIAlertView alloc] initWithTitle:@"Error" message:@"Please fill in all the fields" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
+        [newAlert show];
+        
+    } else if ( _locationManager.location == nil ) {
+        
+        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Error" message:@"Turn On Location services to Allow \"RocReport\" to Determine Your Location" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
+        [alertView show];
+        _issueLocation.text = @"Unable to get Location, Please Enable Location Services";
+        
+    }else {
+        
+        [_issueIndicator startAnimating];
+        
+        //API Calls
+        //First upload the image & then after a succesful upload,
+        //add the issue using the image url response
+        
+        AFHTTPRequestOperationManager *manager = [[AFHTTPRequestOperationManager alloc] initWithBaseURL:[NSURL URLWithString:kRRAPIURL]];
+        manager.responseSerializer.acceptableContentTypes = [NSSet setWithObject:@"text/html"];
+        
+        //get Image url
+        NSDictionary *parameters = @{ @"token": _rrtoken, @"id": kRRAPPAPIKEY};
+        
+        AFHTTPRequestOperation *op = [manager POST:@"image/add/" parameters:parameters constructingBodyWithBlock:^(id<AFMultipartFormData> formData) {
+            
+            //do not put image inside parameters dictionary as I did, but append it!
+            [formData appendPartWithFileData:issueImage name:@"image" fileName:@"image.jpg" mimeType:@"image/jpeg"];
+            
+        } success:^(AFHTTPRequestOperation *operation, id responseObject) {
+            
+            NSLog(@"Success: %@ ***** %@", operation.responseString, responseObject);
+            [_issueIndicator stopAnimating];
+            
+            if ([responseObject[@"status"] boolValue]) {
+                
+                imageUrl = responseObject[@"data"][@"image_url"];
+                
+                //Post the Isuue if the response in above step has the URL of image
+                if ([imageUrl isEqualToString:@""]) {
+                    
+                } else {
+                    
+                    NSDictionary *parametersa = @{ @"category": _pickerCatChosen , @"location" : issueLoc, @"category" : @"test", @"description" : issueDesc, @"picture" : imageUrl, @"novote" : @"true", @"id" : kRRAPPAPIKEY, @"token" : _rrtoken, @"latitude" : _lati, @"longitude" : _longi, @"locality" : _addrLocality, @"formatted_address" : _addrFull, @"country" : _addrCountry,  };
+                    
+                    AFHTTPRequestOperation *opa = [manager POST:@"report/add/" parameters:parametersa success:^(AFHTTPRequestOperation *operationa, id responseObjecta) {
+                        
+                        NSLog(@"Success: %@ ***** %@", operationa.responseString, responseObjecta);
+                        
+                        [_issueIndicator stopAnimating];
+                        
+                        //NSLog(@"%@", responseObjecta[@"data"]);
+                        //NSLog(@"%@", responseObjecta[@"status"]);
+                        
+                        if ([responseObjecta[@"status"] boolValue]) {
+                            
+                            //[self dismissViewControllerAnimated:YES completion:nil];
+                            [self.navigationController popViewControllerAnimated:YES];
+                            //NSLog(@"I ma her");
+                            
+                        } else {
+                            
+                            UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Error" message:responseObjecta[@"data"][@"reason"] delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
+                            [alertView show];
+                            
+                        }
+                        
+                        
+                    } failure:^(AFHTTPRequestOperation *operationa, NSError *error) {
+                        
+                        NSLog(@"Error: %@ ***** %@", operationa.responseString, error);
+                        [_issueIndicator stopAnimating];
+                        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Error" message:operationa.responseString delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
+                        [alertView show];
+                        
+                    }];
+                    
+                    [_issueIndicator startAnimating];
+                    [opa start];
+                    
+                }
+                
+            } else {
+                
+                UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Error" message:responseObject[@"data"][@"reason"] delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
+                [alertView show];
+                
+            }
+            
+        } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+            
+            //NSLog(@"Error: %@ ***** %@", operation.responseString, error);
+            [_issueIndicator stopAnimating];
+            
+            UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Error" message:operation.responseString delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
+            [alertView show];
+            
+        }];
+        
+        [op start];
+        
+    }
+}
+
+// Number of components.
+-(NSInteger)numberOfComponentsInPickerView:(UIPickerView *)pickerView{
+    return 1;
+}
+
+// Total rows in our component.
+-(NSInteger)pickerView:(UIPickerView *)pickerView numberOfRowsInComponent:(NSInteger)component{
+    return [_dataArray count];
+}
+
+// Display each row's data.
+-(NSString *)pickerView:(UIPickerView *)pickerView titleForRow:(NSInteger)row forComponent:(NSInteger)component{
+    return [_dataArray objectAtIndex: row];
+}
+
+// Do something with the selected row.
+-(void)pickerView:(UIPickerView *)pickerView didSelectRow:(NSInteger)row inComponent:(NSInteger)component{
+    //NSLog(@"You selected this: %@", [_dataArray objectAtIndex: row]);
+    [_issueCat setText: [_dataArray objectAtIndex: row]];
+    _pickerCatChosen = [@(row) stringValue];
+    //NSLog(@"%@", _pickerCatChosen);
 }
 @end

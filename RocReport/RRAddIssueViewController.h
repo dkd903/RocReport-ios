@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 #import <CoreLocation/CoreLocation.h>
 
-@interface RRAddIssueViewController : UIViewController <UINavigationControllerDelegate, UIImagePickerControllerDelegate, CLLocationManagerDelegate>
+@interface RRAddIssueViewController : UIViewController <UINavigationControllerDelegate, UIImagePickerControllerDelegate, CLLocationManagerDelegate, UIPickerViewDelegate, UIPickerViewDataSource>
 @property (strong, nonatomic) NSString *rrtoken;
 @property int imageChanged;
 @property (weak, nonatomic) IBOutlet UITextField *issueText;
@@ -26,8 +26,12 @@
 @property (strong, nonatomic) NSString* addrLocality;
 @property (strong, nonatomic) NSString* addrCountry;
 @property (strong, nonatomic) NSString* addrFull;
+@property (weak, nonatomic) IBOutlet UITextField *issueCat;
+@property (strong, nonatomic) UIPickerView *pickerView;
+@property (strong, nonatomic) NSMutableArray *dataArray;
+@property (strong, nonatomic) NSString *pickerCatChosen;
 
-
+- (IBAction)issueCatHit:(id)sender;
 - (IBAction)issueAddButton:(id)sender;
 - (IBAction)issueTakeImage:(id)sender;
 - (IBAction)issueTakeImageText:(id)sender;
