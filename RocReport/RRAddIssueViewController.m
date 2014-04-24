@@ -417,7 +417,7 @@
 -(void)pickerView:(UIPickerView *)pickerView didSelectRow:(NSInteger)row inComponent:(NSInteger)component{
     //NSLog(@"You selected this: %@", [_dataArray objectAtIndex: row]);
     [_issueCat setText: [_dataArray objectAtIndex: row]];
-    _pickerCatChosen = [@(row) stringValue];
+    _pickerCatChosen = [@(row+1) stringValue];
     //NSLog(@"%@", _pickerCatChosen);
 }
 @end
